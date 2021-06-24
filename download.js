@@ -124,4 +124,9 @@ for (const id of ids) {
   console.log(d2);
 }
 
+await Deno.writeTextFile("data/event_fukuidotcom.csv", CSV.stringify(data));
+
+const d2 = CSV.toJSON(await CSV.fetch("data/event_code4fukui.csv"));
+console.log(d2);
+d2.forEach(d => data.push(d));
 await Deno.writeTextFile("data/event_fukui.csv", CSV.stringify(data));
