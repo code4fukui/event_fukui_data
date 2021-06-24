@@ -62,8 +62,8 @@ for (const id of ids) {
   d["schema:url"] = url;
   const metas = dom.querySelectorAll("meta");
   const metamap = {
-    "description": "schema:name",
-    //"og:title": "title", // same as description
+    //"description": "schema:description",
+    "og:title": "schema:name",
     //"og:image": "thumbnail", // same as img
     //"keywords": "keywords", // same as description
   };
