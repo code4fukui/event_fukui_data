@@ -10,6 +10,10 @@ const cachedFetch = async (url) => {
   const fn = escapeURLtoFilename(url);
   const dir = "cache/";
   try {
+    await Deno.mkdir(dir);
+  } catch (e) {
+  }
+  try {
     const txt = await Deno.readTextFile(dir + fn);
     return txt;
   } catch (e) {
@@ -19,12 +23,11 @@ const cachedFetch = async (url) => {
   return txt;
 };
 
-/*
-const txt = await (await fetch(url)).text();
-console.log(txt);
-await Deno.writeTextFile("cache/index.html", txt);
-*/
-const txt = await Deno.readTextFile("cache/index.html");
+//const txt = await (await fetch(url)).text();
+const txt = await cachedFetch(url);
+//console.log(txt);
+//await Deno.writeTextFile("cache/index.html", txt);
+//const txt = await Deno.readTextFile("cache/index.html");
 
 const dom = HTMLParser.parse(txt);
 
@@ -75,7 +78,8 @@ for (const id of ids) {
   }
   d.id = id;
   d["schema:description"] = dom.querySelector(".ParagraphContents .DefaultText").text;
-  d["schema:image"] = "https://www.fuku-e.com/" + dom.querySelector(".ParagraphContents .LargeImage img").attributes.src.substring(3);
+  const img = dom.querySelector(".ParagraphContents .LargeImage img");
+  d["schema:image"] = img ? "https://www.fuku-e.com/" + img.attributes.src.substring(3) : "";
   const trs = dom.querySelectorAll(".DefaultTable tr");
   const namemap = {
     "開催日時": "schema:duration",
