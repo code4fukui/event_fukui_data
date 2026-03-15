@@ -1,5 +1,7 @@
 # event_fukui_data
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 This project is a web scraper that extracts event data from the website "www.fuku-e.com" and saves it as CSV files.
 
 ## Features
