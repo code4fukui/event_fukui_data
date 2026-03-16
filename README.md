@@ -31,4 +31,4 @@ This will generate the `data/event_fukui.csv` file containing the combined event
 This project uses data from the "www.fuku-e.com" website, which is an event listing website for the Fukui prefecture in Japan.
 
 ## License
-This project is licensed under the MIT License.
+MIT License — see [LICENSE](LICENSE).
